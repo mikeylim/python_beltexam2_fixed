@@ -1,0 +1,49 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+.wrapper{
+    margin: 20px;
+    width: 1000px;
+}
+#left{
+    vertical-align: top;
+    border: 2px solid black; 
+    float: left;   
+    margin-bottom: 30px;
+    /* display: inline-block; */
+}
+#right{
+    float: right;    
+    /* display: inline-block; */
+    vertical-align: top;
+    border: 2px solid black;    
+    padding: 15px;
+}
+#bottom{
+    border: 2px solid black;
+    display: inline-block;
+    padding: 15px;
+}
+.q_quotes{
+    width: 400px;
+    border: 1px solid blue;
+    margin: 10px;
+    padding: 15px;
+}
+.f_quotes{
+    width: 400px;
+    border: 1px solid darkblue;
+    margin: 10px;
+    padding: 15px;
+}
+
+label{
+    display: inline-block;
+}
+#small{
+    font-size: 10px;
+}
+a{
+    color: blue;
+}

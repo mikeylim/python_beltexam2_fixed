@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'quotation/user.css' %}">
+</head>
+<body>
+    <div class="wrapper">    
+        <div class="head">
+            <a href="/quotation">Dashboard</a> | <a href="/logout">Logout</a>
+        </div>
+
+        <div>
+            <p>Posts by {{ user.first_name }}</p>
+            <p>Count: {{ count }}</p>
+        </div>
+
+        <div class="main-content">
+            {% for quote in quotes %}
+                <p><span class='red'>{{ quote.quoter }}:</span> {{ quote.quotation }}</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

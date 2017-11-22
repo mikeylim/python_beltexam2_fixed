@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'login/index_style.css' %}">
+    <title>Login</title>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="left">
+            <h1>Registration</h1>
+            {% if messages %}
+                {% for message in messages %}   
+                    {% ifequal message.tags "register info" %}
+                        <p class="error">{{ message }}</p>
+                    {% endifequal %}
+                {% endfor %}
+            {% endif %}        
+            <form action="/register" method="post">
+                {% csrf_token %}
+                <label for="first_name">First Name:</label> <input type="text" id="first_name" name="first_name">
+                <br>
+                <label for="last_name">Last Name:</label> <input type="text" id="last_name" name="last_name">
+                <br>
+                <label for="email">Email:</label> <input type="text" id="email" name="email">
+                <br>
+                <label for="password">Password:</label> <input type="password" id="password" name="password">
+                <br>
+                <p>*Password should be at least 8 characters</p>
+                <label for="confirm">Confirm Password:</label> <input type="password" id="confirm" name="confirm">
+                <br>
+                <label for="birthdate">Birthdate:</label> <input type="date" id="birthdate" name="birthdate">
+                <br>
+                <input type="submit" value="Register" class="submit">
+            </form>
+        </div>
+        <div class="right">
+            <h1>Login</h1>
+            {% if messages %}
+                {% for message in messages %}
+                    {% ifequal message.tags "login info" %}
+                        <p class="error">{{ message }}</p>
+                    {% endifequal %}
+                {% endfor %}
+            {% endif %}
+            <form action="/login" method="post">
+                {% csrf_token %}
+                <label for="email_login">Email:</label> <input type="text" id="email_login" name="email">
+                <br>
+                <label for="password_login">Password:</label> <input type="password" id="password_login" name="password">
+                <br>
+                <input type="submit" value="Login" class="submit">
+            </form>
+        </div>
+        
+        
+                
+    </div>    
+</body>
+</html>

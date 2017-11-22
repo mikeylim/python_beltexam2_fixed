@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quotes</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'quotation/index.css' %}">
+</head>
+<body>
+    <div class="wrapper">
+        <div id="header">
+            <h1>Welcome, {{ user.first_name }}</h1>
+            <a href="/logout">Logout</a>
+        </div>
+        
+        <div id="left">
+            <h3>Quotable Quotes</h3>
+            {% for quote in quotes %}
+                <div class="q_quotes">
+                    <p>{{ quote.quoter }}: {{ quote.quotation }}</p>
+                    <br>
+                    <p id="small">Posted by <a href="/quotation/viewUser/{{ quote.user.id }}">{{ quote.user }}</a></p>
+                    <br>
+                    <form action="{% url 'quotation:addToMyList' id=quote.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Add to My List">
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div id="right">
+            <h3>Your Favorites</h3>
+            {% for fav in favs %}
+                <div class="f_quotes">
+                    <p>{{ fav.quoter }}: {{ fav.quotation }}</p>
+                    <p id="small">Posted by <a href="/quotation/viewUser/{{ quote.user.id }}">{{ fav.user }}</a></p>
+                    <form action="{% url 'quotation:deleteList' id=fav.id %}" method="post">
+                        {% csrf_token %}
+                        <input type="submit" value="Remove From My List">
+                    </form>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div id="bottom">
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="error">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <h2>Contribute a Quote:</h2>
+            <form action="/quotation/addToList/{{ id }}" method=post>     
+                {% csrf_token %}           
+                <label for="quoter">Quoted By:</label><input type="text" name="quoter" id="quoter">
+                <br>
+                <label for="quotation">Message:</label><br><textarea name="quotation" id="quotation" cols="30" rows="10"></textarea>
+                <br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

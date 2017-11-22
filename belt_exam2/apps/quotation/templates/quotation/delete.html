@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+    <h4>Are you sure you want to delete your review for {{review.book.title}}?</h4>
+    <p>Review:</p>
+    <p>{{review.review}}</p>
+    <form action="{% url 'books:deleteReview' id=review.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-danger" value="Confirm">
+        <button type="button" class="btn btn-default"><a href="{% url 'books:index' %}" id="hrefbtn">Cancel</a></button>
+    </form>
+</body>
+</html>
